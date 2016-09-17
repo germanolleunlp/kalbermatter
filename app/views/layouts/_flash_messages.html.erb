@@ -1,0 +1,8 @@
+<% if !flash.empty? %>
+  <div data-alert class="alert-box">
+    <%= flash_div :success %>
+    <%= flash_div :error %>
+    <%= flash_div :notice %>
+    <%= flash_div :alert %>
+  </div>
+<% end %>

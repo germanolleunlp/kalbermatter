@@ -2,13 +2,15 @@
 <html>
   <head>
     <title>Kalbermatter</title>
-    <%= csrf_meta_tags %>
-
+    <%= render partial: "layouts/layout_header" %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <%= render partial: "layouts/nav" %>
+    <%= render partial: "layouts/flash_messages" %>
     <%= yield %>
+    <%= render partial: "shared/footer" %>
   </body>
 </html>
