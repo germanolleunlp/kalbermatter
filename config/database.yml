@@ -80,6 +80,8 @@ test:
 #
 production:
   <<: *default
-  database: kalbermatter_production
-  username: kalbermatter
-  password: <%= ENV['KALBERMATTER_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
+
+staging:
+  <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
