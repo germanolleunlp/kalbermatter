@@ -3,4 +3,4 @@
 
 require_relative 'config/application'
 
-Rails.application.load_tasks
+Kalbermatter::Application.load_tasks
