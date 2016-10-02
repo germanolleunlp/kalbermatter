@@ -1,24 +1,9 @@
-# README
+#### Master
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[ ![Codeship Status for germanolleunlp/kalbermatter](https://codeship.com/projects/972fbcc0-6adc-0134-5c93-46da9e039e1e/status?branch=master)](https://codeship.com/projects/176864)
 
-Things you may want to cover:
+#### Staging
 
-* Ruby version
+[ ![Codeship Status for germanolleunlp/kalbermatter](https://codeship.com/projects/972fbcc0-6adc-0134-5c93-46da9e039e1e/status?branch=staging)](https://codeship.com/projects/176864)
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Kalbermatter
