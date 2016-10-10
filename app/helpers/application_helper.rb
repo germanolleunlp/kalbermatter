@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def money(price)
+    Money.new(price * 100, 'ARS').format
+  end
+
   def flash_div(level)
     if flash[level].present?
       # level directly corresponds to rails types for 2/3 bootstrap styles.

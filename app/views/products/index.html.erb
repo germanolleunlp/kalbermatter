@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Products</h1>
+
+<%= link_to 'New Product', new_product_path %>
+<hr>
+<table class='table'>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Style</th>
+      <th>Price</th>
+      <th width="400">Description</th>
+      <th>Created</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% products.each do |product| %>
+      <tr>
+        <td><%= product.name %></td>
+        <td><%= product.style %></td>
+        <td><%= money product.price %></td>
+        <td><%= product.description %></td>
+        <td><%= product.created_at.strftime("%d %b. %Y at %H:%M") %></td>
+        <td>
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+              <li><%= link_to 'Show', product %></li>
+              <li><%= link_to 'Edit', edit_product_path(product) %></li>
+              <li><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -33,6 +33,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'letter_opener', '~> 1.4.1'
   gem 'better_errors', '~> 2.1.1'
+  gem 'binding_of_caller', '~> 0.7.2'
   gem 'xray-rails', '~> 0.2.0'
 end
 
