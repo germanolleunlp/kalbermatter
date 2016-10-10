@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= order.to_s %></h1>
+
+<%= link_to 'Edit', edit_order_path(order) %> | <%= link_to 'Back', orders_path %>
+<hr>
+
+<blockquote>
+  <p><%= order.description %></p>
+</blockquote>
+
+<%= order.product_configurations.each |product_configuration| %>
+<% end %>
+
+<h2>Total: <strong><%= money order.price %></strong></h2>

@@ -4,6 +4,8 @@
   <div class="form-inputs">
     <%= form.input :name %>
     <%= form.input :description %>
+    <%= form.input :price %>
+    <%= form.input :style, collection: Product.styles.keys.to_a, prompt: "Select style..." %>
   </div>
 
   <div class="form-actions">

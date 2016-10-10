@@ -8,5 +8,13 @@ Kalbermatter::Application.routes.draw do
     passwords: 'users/passwords'
   }
 
-  resources :products
+  resources :orders do
+    resources :product_configurations
+  end
+
+  resources :products do
+    resources :ingredient_configurations
+  end
+
+  resources :ingredients
 end

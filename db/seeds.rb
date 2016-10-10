@@ -39,8 +39,8 @@ unless Rails.env.production?
     end
   end
 
-  5.times do |i|
-    order = Order.create!({ description: "Order##{i}" })
+  ["Queens Ba", "Johnny B. Good", "Dublin", "Rock&Feller's", "Ceveza Daniel O. Pellegrini"].each_with_index do |bar, i|
+    order = Order.create!({ description: bar })
     Product.all.sample(3).each do |product|
       quantity = [*1..5].sample
       ProductConfiguration.create!({ order: order, product: product, quantity: quantity })
