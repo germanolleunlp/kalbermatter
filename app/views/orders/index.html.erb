@@ -9,7 +9,7 @@
     <tr>
       <th>#</th>
       <th width="400">Description</th>
-      <th>Price</th>
+      <th>Total</th>
       <th>Created</th>
       <th>Actions</th>
     </tr>
@@ -18,9 +18,9 @@
   <tbody>
     <% orders.each do |order| %>
       <tr>
-        <td><%= order.to_s %></td>
+        <td><%= order.display_name %></td>
         <td><%= order.description %></td>
-        <td><%= money order.price %></td>
+        <td><%= money order.total %></td>
         <td><%= order.created_at.strftime("%d %b. %Y at %H:%M") %></td>
         <td>
           <div class="btn-group">

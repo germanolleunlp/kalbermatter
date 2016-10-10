@@ -1,11 +1,11 @@
 class Order < ApplicationRecord
   has_many :product_configurations
 
-  def to_s
+  def display_name
     "Order##{id}"
   end
 
-  def price
-    product_configurations.map(&:price).sum
+  def total
+    product_configurations.map(&:total).sum
   end
 end

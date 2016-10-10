@@ -5,7 +5,7 @@ class Product < ApplicationRecord
   enum style: { other: 0, ale: 1, lager: 2 }
   validates :name, :style, :price, presence: true
 
-  def to_s
+  def display_name
     name
   end
 end

@@ -1,15 +1,48 @@
 <p id="notice"><%= notice %></p>
 
-<h1><%= order.to_s %></h1>
-
+<h1><%= order.display_name %></h1>
 <%= link_to 'Edit', edit_order_path(order) %> | <%= link_to 'Back', orders_path %>
+
 <hr>
 
 <blockquote>
   <p><%= order.description %></p>
 </blockquote>
 
-<%= order.product_configurations.each |product_configuration| %>
-<% end %>
+<table class='table'>
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Total</th>
+      <th>Created</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
 
-<h2>Total: <strong><%= money order.price %></strong></h2>
+  <tbody>
+    <% order.product_configurations.each do |product_configuration| %>
+      <tr>
+        <td><%= product_configuration.product.name %></td>
+        <td><%= product_configuration.quantity %></td>
+        <td><%= money product_configuration.product.price %></td>
+        <td><%= money product_configuration.total %></td>
+        <td><%= product_configuration.created_at.strftime("%d %b. %Y at %H:%M") %></td>
+        <td>
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+              <li><%= link_to 'Show', order_product_configuration_path(order, product_configuration) %></li>
+              <li><%= link_to 'Edit', edit_order_product_configuration_path(order, product_configuration) %></li>
+              <li><%= link_to 'Destroy', order_product_configuration_path(order, product_configuration), method: :delete, data: { confirm: 'Are you sure?' } %></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2>Created at <%= order.created_at.strftime("%d %b. %Y at %H:%M") %></h2>
+<h2>Total: <strong><%= money order.total %></strong></h2>

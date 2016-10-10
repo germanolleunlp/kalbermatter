@@ -4,7 +4,11 @@ class ProductConfiguration < ApplicationRecord
 
   validates :quantity, presence: true
 
-  def price
+  def total
     quantity * product.price
+  end
+
+  def display_name
+    "#{product.name} - x#{quantity}"
   end
 end
