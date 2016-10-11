@@ -5,7 +5,23 @@
     <%= form.input :description %>
   </div>
 
+  <div class="row">
+    <% order.product_configurations.each do |product_configuration| %>
+      <%= form.simple_fields_for product_configuration do |product_configuration_form| %>
+        <div class="col-xs-4">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <%= product_configuration_form.input :product_id, collection: Product.all, label_method: :display_name, prompt: "Select product..." %>
+              <%= product_configuration_form.input :quantity %>
+              <%= link_to 'Destroy', order_product_configuration_path(order, product_configuration), class: 'btn btn-danger', method: :delete, data: { disable_with: 'Please wait...', confirm: 'Are you sure?' } %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
   <div class="form-actions">
-    <%= form.button :submit %>
+    <%= form.button :submit, data: { disable_with: 'Please wait...' } %>
   </div>
 <% end %>

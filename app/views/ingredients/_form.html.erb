@@ -1,11 +1,10 @@
-<%= simple_form_for(product) do |form| %>
+<%= simple_form_for(ingredient) do |form| %>
   <%= form.error_notification %>
 
   <div class="form-inputs">
     <%= form.input :name %>
     <%= form.input :description %>
-    <%= form.input :price %>
-    <%= form.input :style, collection: Product.styles.keys.to_a, prompt: "Select style..." %>
+    <%= form.input :quantity %>
   </div>
 
   <div class="form-actions">

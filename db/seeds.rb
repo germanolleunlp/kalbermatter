@@ -17,7 +17,7 @@ unless Rails.env.production?
 
   ingredients = [grain, hops, yeast]
   product_list = [
-    { name: "Pale Ale", style: 1, price: 295.00, description: "Whether American or English, the 'pale' was clipped on long ago to distinguish it from the dark color of Porters. American and English styles differ, but generally they are gold or copper colored and dry with crisp hop flavor." },
+    { name: "Pale Ale", style: 1, quantity: 50, price: 295.00, description: "Whether American or English, the 'pale' was clipped on long ago to distinguish it from the dark color of Porters. American and English styles differ, but generally they are gold or copper colored and dry with crisp hop flavor." },
     { name: "India Pale Ale (IPA)", style: 1, price: 195.00, description: "Pale ale with intense hop flavor and aroma and slightly higher alcohol content." },
     { name: "Brown Ale", style: 1, price: 200.00, description: "These distinctively northern English style ales have a strong, malty center and can be nutty, sweet and very lightly hopped. They are medium bodied and the name matches the color of the ale." },
     { name: "Stout", style: 1, price: 205.00, description: "(Guinness and Murphy´s are dry Irish stouts) – Thick, black opaque and rich. Stouts draw their flavor and color from roasted barley.  They often taste of malt and caramel, with little to no hop aroma or flavor." },
@@ -33,6 +33,7 @@ unless Rails.env.production?
   ]
 
   product_list.each do |element|
+    element[:quantity] = [*10..20].sample
     product = Product.create!(element)
     ingredients.each do |ingredient|
       IngredientConfiguration.create!({ product: product, ingredient: ingredient, quantity: 150.00 })

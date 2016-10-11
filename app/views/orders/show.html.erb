@@ -35,7 +35,7 @@
             <ul class="dropdown-menu">
               <li><%= link_to 'Show', order_product_configuration_path(order, product_configuration) %></li>
               <li><%= link_to 'Edit', edit_order_product_configuration_path(order, product_configuration) %></li>
-              <li><%= link_to 'Destroy', order_product_configuration_path(order, product_configuration), method: :delete, data: { confirm: 'Are you sure?' } %></li>
+              <li><%= link_to 'Destroy', order_product_configuration_path(order, product_configuration), method: :delete, data: { confirm: 'Are you sure?', disable_with: 'Please wait...' } %></li>
             </ul>
           </div>
         </td>

@@ -5,7 +5,9 @@ class OrdersController < ApplicationController
 
   def show; end
 
-  def new; end
+  def new
+    order.product_configurations.build
+  end
 
   def edit; end
 
@@ -34,8 +36,8 @@ class OrdersController < ApplicationController
   def destroy
     order.destroy
     redirect_to(
-      order_url,
-      flash: { success: 'Order was successfully destroyed.' }
+      orders_url,
+      flash: { success: 'Order was successfully removed.' }
     )
   end
 

@@ -35,7 +35,7 @@ class ProductsController < ApplicationController
     product.destroy
     redirect_to(
       products_url,
-      flash: { success: 'Product was successfully destroyed.' }
+      flash: { success: 'Product was successfully removed.' }
     )
   end
 

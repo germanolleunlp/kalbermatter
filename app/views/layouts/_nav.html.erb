@@ -18,7 +18,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if current_user %>
-          <%= active_link_to 'Logout', destroy_user_session_path, wrap_tag: :li, method: :delete %>
+          <%= active_link_to 'Logout', destroy_user_session_path, wrap_tag: :li, method: :delete, data: { disable_with: 'Please wait...' } %>
         <% else %>
           <%= active_link_to 'Login', user_session_path, wrap_tag: :li %>
         <% end %>
