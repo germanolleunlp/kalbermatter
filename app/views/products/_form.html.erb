@@ -8,6 +8,27 @@
     <%= form.input :style, collection: Product.styles.keys.to_a, prompt: "Select style..." %>
   </div>
 
+  <div class="row">
+    <% product.ingredient_configurations.each do |ingredient_configuration| %>
+      <div class="col-xs-4">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <%= field_set_tag 'Ingredient' do %>
+              <%= form.simple_fields_for "ingredient_configurations_attributes[]", ingredient_configuration do |ic| %>
+                <%= ic.input :id, as: :hidden %>
+                <%= ic.input :ingredient_id, collection: Ingredient.all, label_method: :display_name, prompt: "Select ingredient..." %>
+                <%= ic.input :quantity %>
+                <% if ingredient_configuration.id %>
+                  <%= link_to 'Destroy', product_ingredient_configuration_path(product, ingredient_configuration), class: 'btn btn-danger', method: :delete, data: { disable_with: 'Please wait...', confirm: 'Are you sure?' } %>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
   <div class="form-actions">
     <%= form.button :submit, data: { disable_with: 'Please wait...' } %>
   </div>

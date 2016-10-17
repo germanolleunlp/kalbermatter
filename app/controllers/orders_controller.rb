@@ -1,18 +1,23 @@
 class OrdersController < ApplicationController
-  helper_method :order, :orders
-
-  def index; end
-
-  def show; end
-
-  def new
-    order.product_configurations.build
+  def index
+    @orders = Order.order(created_at: :desc)
   end
 
-  def edit; end
+  def show
+    @order = Order.find(params[:id])
+  end
+
+  def new
+    @order = Order.new.build_products(new_products)
+  end
+
+  def edit
+    @order = Order.find(params[:id]).build_products(new_products)
+  end
 
   def create
-    if order.update_attributes(order_params)
+    @order = Order.new
+    if @order.update_attributes(order_params)
       redirect_to(
         orders_url,
         flash: { success: 'Order was successfully created.' }
@@ -23,7 +28,8 @@ class OrdersController < ApplicationController
   end
 
   def update
-    if order.update_attributes(order_params)
+    @order = Order.find(params[:id])
+    if @order.update_attributes(order_params)
       redirect_to(
         orders_url,
         flash: { success: 'Order was successfully updated.' }
@@ -34,7 +40,8 @@ class OrdersController < ApplicationController
   end
 
   def destroy
-    order.destroy
+    @order = Order.find(params[:id])
+    @order.destroy
     redirect_to(
       orders_url,
       flash: { success: 'Order was successfully removed.' }
@@ -43,15 +50,14 @@ class OrdersController < ApplicationController
 
   private
 
-  def order
-    @order ||= params[:id] ? Order.find(params[:id]) : Order.new
-  end
-
-  def orders
-    @orders ||= Order.order(created_at: :desc)
-  end
-
   def order_params
-    params.fetch(:order, {}).permit(:name, :description)
+    params.require(:order).permit(
+      :description,
+      product_configurations_attributes: [:id, :product_id, :quantity]
+    )
+  end
+
+  def new_products
+    params[:new_products].to_i
   end
 end

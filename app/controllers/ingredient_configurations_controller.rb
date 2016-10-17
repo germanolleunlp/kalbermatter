@@ -1,7 +1,7 @@
-class ProductConfigurationsController < ApplicationController
+class IngredientConfigurationsController < ApplicationController
   def destroy
-    ProductConfiguration.find(params[:id]).destroy
-    flash[:success] = 'Product was successfully removed.'
+    IngredientConfiguration.find(params[:id]).destroy
+    flash[:success] = 'Ingredient was successfully removed.'
     redirect_to referring_index_path
   end
 

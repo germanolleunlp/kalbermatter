@@ -1,6 +1,14 @@
 <h1>Editing Order</h1>
 
-<%= link_to 'Show', order %> | <%= link_to 'Back', orders_path %>
+<%= link_to 'Show', @order %> | <%= link_to 'Back', orders_path %>
 <hr>
-<%= render 'form', order: order %>
+<h4>Add products</h4>
+<%= form_tag edit_order_path(@order), class: 'form-inline', method: :get do |form| %>
+  <div class="form-group">
+    <%= number_field_tag :new_products, params[:new_products], min: 0, class: 'form-control' %>
+  </div>
+  <%= submit_tag "Add products", class: "btn btn-primary" %>
+<% end %>
+<hr>
+<%= render 'form', order: @order %>
 <hr>

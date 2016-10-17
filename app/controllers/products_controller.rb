@@ -1,16 +1,23 @@
 class ProductsController < ApplicationController
-  helper_method :product, :products
+  def index
+    @products = Product.order(name: :asc)
+  end
 
-  def index; end
+  def show
+    @product = Product.find(params[:id])
+  end
 
-  def show; end
+  def new
+    @product = Product.new.build_ingredients(new_ingredients)
+  end
 
-  def new; end
-
-  def edit; end
+  def edit
+    @product = Product.find(params[:id]).build_ingredients(new_ingredients)
+  end
 
   def create
-    if product.update_attributes(product_params)
+    @product = Product.new
+    if @product.update_attributes(product_params)
       redirect_to(
         products_url,
         flash: { success: 'Product was successfully created.' }
@@ -21,7 +28,8 @@ class ProductsController < ApplicationController
   end
 
   def update
-    if product.update_attributes(product_params)
+    @product = Product.find(params[:id])
+    if @product.update_attributes(product_params)
       redirect_to(
         products_url,
         flash: { success: 'Product was successfully updated.' }
@@ -32,7 +40,8 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    product.destroy
+    @product = Product.find(params[:id])
+    @product.destroy
     redirect_to(
       products_url,
       flash: { success: 'Product was successfully removed.' }
@@ -41,15 +50,15 @@ class ProductsController < ApplicationController
 
   private
 
-  def product
-    @product ||= params[:id] ? Product.find(params[:id]) : Product.new
-  end
-
-  def products
-    @products ||= Product.order(name: :asc)
-  end
-
   def product_params
-    params.fetch(:product, {}).permit(:name, :description)
+    params.require(:product).permit(
+      :name,
+      :description,
+      ingredient_configurations_attributes: [:id, :ingredient_id, :quantity]
+    )
+  end
+
+  def new_ingredients
+    params[:new_ingredients].to_i
   end
 end

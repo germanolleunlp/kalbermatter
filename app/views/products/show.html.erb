@@ -1,19 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<h1><%= product.name %></h1>
-<%= link_to 'Edit', edit_product_path(product) %> | <%= link_to 'Back', products_path %>
+<h1><%= @product.name %></h1>
+<%= link_to 'Edit', edit_product_path(@product) %> | <%= link_to 'Back', products_path %>
 
 <hr>
 
 <dl>
   <dt>Price</dt>
-  <dd><%= money product.price %></dd>
+  <dd><%= money @product.price %></dd>
   <dt>Style</dt>
-  <dd><%= product.style %></dd>
+  <dd><%= @product.style %></dd>
 </dl>
 
 <blockquote>
-  <p><%= product.description %></p>
+  <p><%= @product.description %></p>
 </blockquote>
 
 <table class='table'>
@@ -22,27 +22,18 @@
       <th>Ingredient</th>
       <th>Quantity</th>
       <th>Created</th>
-      <th>Actions</th>
     </tr>
   </thead>
 
   <tbody>
-    <% product.ingredient_configurations.each do |ingredient_configuration| %>
+    <% @product.ingredient_configurations.each do |ingredient_configuration| %>
       <tr>
         <td><%= ingredient_configuration.ingredient.name %></td>
         <td><%= ingredient_configuration.quantity %></td>
         <td><%= ingredient_configuration.created_at.strftime("%d %b. %Y at %H:%M") %></td>
-        <td>
-          <div class="btn-group">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></button>
-            <ul class="dropdown-menu">
-              <li><%= link_to 'Show', product_ingredient_configuration_path(product, ingredient_configuration) %></li>
-              <li><%= link_to 'Edit', edit_product_ingredient_configuration_path(product, ingredient_configuration) %></li>
-              <li><%= link_to 'Destroy', product_ingredient_configuration_path(product, ingredient_configuration), method: :delete, data: { confirm: 'Are you sure?', disable_with: 'Please wait...' } %></li>
-            </ul>
-          </div>
-        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<h3>Quantity: <strong><%= @product.quantity %></strong> | Stock available: <strong><%= @product.stock %></strong></h3>

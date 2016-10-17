@@ -7,6 +7,10 @@ class Ingredient < ApplicationRecord
     super || '(none)'
   end
 
+  def display_name
+    "#{name} - Available: (#{quantity})"
+  end
+
   def stock
     quantity - ingredient_configurations.map(&:quantity).sum
   end

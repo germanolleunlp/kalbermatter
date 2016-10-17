@@ -9,11 +9,11 @@ Kalbermatter::Application.routes.draw do
   }
 
   resources :orders do
-    resources :product_configurations, except: [:index]
+    resources :product_configurations, only: [:destroy]
   end
 
   resources :products do
-    resources :ingredient_configurations, except: [:index]
+    resources :ingredient_configurations, only: [:destroy]
   end
 
   resources :ingredients

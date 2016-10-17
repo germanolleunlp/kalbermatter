@@ -1,6 +1,14 @@
 <h1>Editing Product</h1>
 
-<%= link_to 'Show', product %> | <%= link_to 'Back', products_path %>
+<%= link_to 'Show', @product %> | <%= link_to 'Back', products_path %>
 <hr>
-<%= render 'form', product: product %>
+<h4>Add ingredients</h4>
+<%= form_tag edit_product_path(@product), class: 'form-inline', method: :get do |form| %>
+  <div class="form-group">
+    <%= number_field_tag :new_ingredients, params[:new_ingredients], min: 0, class: 'form-control' %>
+  </div>
+  <%= submit_tag "Add ingredients", class: "btn btn-primary" %>
+<% end %>
+<hr>
+<%= render 'form', product: @product %>
 <hr>

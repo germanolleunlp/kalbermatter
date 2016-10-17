@@ -7,17 +7,22 @@
 
   <div class="row">
     <% order.product_configurations.each do |product_configuration| %>
-      <%= form.simple_fields_for product_configuration do |product_configuration_form| %>
-        <div class="col-xs-4">
-          <div class="panel panel-default">
-            <div class="panel-body">
-              <%= product_configuration_form.input :product_id, collection: Product.all, label_method: :display_name, prompt: "Select product..." %>
-              <%= product_configuration_form.input :quantity %>
-              <%= link_to 'Destroy', order_product_configuration_path(order, product_configuration), class: 'btn btn-danger', method: :delete, data: { disable_with: 'Please wait...', confirm: 'Are you sure?' } %>
-            </div>
+      <div class="col-xs-4">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <%= field_set_tag 'Product' do %>
+              <%= form.simple_fields_for "product_configurations_attributes[]", product_configuration do |pc| %>
+                <%= pc.input :id, as: :hidden %>
+                <%= pc.input :product_id, collection: Product.all, label_method: :display_name, prompt: "Select product..." %>
+                <%= pc.input :quantity %>
+                <% if product_configuration.id %>
+                  <%= link_to 'Destroy', order_product_configuration_path(order, product_configuration), class: 'btn btn-danger', method: :delete, data: { disable_with: 'Please wait...', confirm: 'Are you sure?' } %>
+                <% end %>
+              <% end %>
+            <% end %>
           </div>
         </div>
-      <% end %>
+      </div>
     <% end %>
   </div>
 
